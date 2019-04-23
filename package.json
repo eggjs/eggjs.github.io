@@ -1,0 +1,23 @@
+{
+  "name": "eggjs.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eggjs/eggjs.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eggjs/eggjs.github.io/issues"
+  },
+  "homepage": "https://github.com/eggjs/eggjs.github.io#readme",
+  "dependencies": {
+    "vuepress": "^1.0.0-alpha.47"
+  }
+}
