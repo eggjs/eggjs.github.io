@@ -226,13 +226,15 @@ module.exports = appInfo => {
   // 自定义日志
   config.customLogger = {
     oneLogger: {
-      file: path.join(appInfo.root, 'logs', appInfo.name, 'one.log'),
+      file: 'one.log',
     },
   };
 
   return config;
 };
 ```
+
+如果配置为文件名，则会自动转换为 `path.join(this.app.config.logger.dir, file)`。
 
 然后可通过 `app.getLogger('oneLogger')` / `ctx.getLogger('oneLogger')` 获取，获取到的 logger 会使用对应的 `Logger` 配置，并以 `config.logger` 为默认值。
 
@@ -248,7 +250,7 @@ module.exports = appInfo => {
 // config/config.default.js
 config.customLogger = {
   oneLogger: {
-    file: path.join(appInfo.root, 'logs', appInfo.name, 'one.log'),
+    file: 'one.log',
     formatter(meta) {
       const { level, date, pid, message } = meta;
       return `[${date}] [${level}] [${pid}] ${message}`;
@@ -335,7 +337,7 @@ module.exports = appInfo => {
 
   config.logrotator = {
     filesRotateBySize: [
-      path.join(appInfo.root, 'logs', appInfo.name, 'egg-web.log'),
+      'egg-web.log',
     ],
     maxFileSize: 2 * 1024 * 1024 * 1024,
   };
@@ -345,6 +347,8 @@ module.exports = appInfo => {
 ```
 
 添加到 `filesRotateBySize` 的日志文件不再按天进行切割。
+
+如果配置为文件名，则会自动转换为 `path.join(this.app.config.logger.dir, file)`。
 
 ### 按照小时切割
 
@@ -360,7 +364,7 @@ module.exports = appInfo => {
   return {
     logrotator: {
       filesRotateByHour: [
-        path.join(appInfo.root, 'logs', appInfo.name, 'common-error.log'),
+        'common-error.log',
       ],
     },
   };
@@ -368,6 +372,8 @@ module.exports = appInfo => {
 ```
 
 添加到 `filesRotateByHour` 的日志文件不再被按天进行切割。
+
+如果配置为文件名，则会自动转换为 `path.join(this.app.config.logger.dir, file)`。
 
 ## 编写测试
 
