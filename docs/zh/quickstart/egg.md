@@ -163,7 +163,7 @@ class HomeController extends Controller {
 在本例中，我们使用 `Vue` 来写对应的前端逻辑，可以直接参见示例代码。
 
 :::warning 注意事项
-- `static` 插件，线上会默认设置一年的 `magAge`。
+- `static` 插件，线上会默认设置一年的 `maxAge`。
 - 框架默认开启了 [CSRF 防护](../ecosystem/security/csrf.md)，故 `AJAX` 请求需要带上对应的 `token`：
 
 ```js
