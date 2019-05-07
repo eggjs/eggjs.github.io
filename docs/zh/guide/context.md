@@ -35,7 +35,7 @@ module.exports = () => {
     const start = Date.now();
     await next();
     const cost = Date.now() - start;
-    ctx.set('X-Response-Time, `${cost}ms`);
+    ctx.set('X-Response-Time', `${cost}ms`);
   }
 };
 ```
