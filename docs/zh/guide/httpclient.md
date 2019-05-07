@@ -178,34 +178,37 @@ class HttpController extends Controller {
 
 当一个表单提交包含文件的时候，请求数据格式就必须以 [multipart/form-data](http://tools.ietf.org/html/rfc2388) 进行提交了。
 
-此时需要引入 [formstream] 模块来帮助我们生成可以被消费的 `form` 对象。
+[urllib] 内置了 [formstream] 模块来帮助我们生成可以被消费的 `form` 对象。
 
 关键配置为：
 
-- `stream: form`：通过 `Stream` 模式发送数据。
-- `headers: form.headers()`：传递符合 `multipart/form-data` 要求的请求头。
+- `files`：需要上传的文件，支持多种形式：
+  - 单文件上传：支持直接传递：String 文件路径 / Stream 对象 / Buffer 对象。
+  - 多文件上传：数组或 Object 格式，若为后者，则 key 为对应的 fieldName。
+- `data`：将被转换为对应的 `form field`。
 
 ```js
 // app/controller/http.js
-const FormStream = require('formstream');
-
 class HttpController extends Controller {
   async upload() {
     const { ctx } = this;
 
-    const form = new FormStream();
-    // 设置普通的 key value
-    form.field('foo', 'bar');
-    // 上传当前文件本身用于测试，可以执行多次来添加多个文件
-    form.file('file', __filename);
-
     const result = await ctx.curl('https://httpbin.org/post', {
       method: 'POST',
-      // 生成符合 multipart/form-data 要求的请求 headers
-      headers: form.headers(),
-      // 以 stream 模式提交
-      stream: form,
       dataType: 'json',
+      data: {
+        foo: 'bar',
+      },
+
+      // 单文件上传
+      files: __filename,
+
+      // 多文件上传
+      // files: {
+      //   file1: __filename,
+      //   file2: fs.createReadStream(__filename),
+      //   file3: Buffer.from('mock file content'),
+      // },
     });
 
     ctx.body = result.data.files;
@@ -710,6 +713,36 @@ ctx.curl(url, {
 ctx.curl(url, {
   // 创建连接超时 1 秒，接收响应超时 30 秒，用于响应比较大的场景
   timeout: [ 1000, 30000 ],
+});
+```
+
+### `files: Mixed`
+
+文件上传，支持格式： `String | ReadStream | Buffer | Array | Object`。
+
+```js
+ctx.curl(url, {
+  method: 'POST',
+  files: '/path/to/read',
+  data: {
+    foo: 'other fields',
+  },
+});
+```
+
+多文件上传：
+
+```js
+ctx.curl(url, {
+  method: 'POST',
+  files: {
+    file1: '/path/to/read',
+    file2: fs.createReadStream(__filename),
+    file3: Buffer.from('mock file content'),
+  },
+  data: {
+    foo: 'other fields',
+  },
 });
 ```
 
