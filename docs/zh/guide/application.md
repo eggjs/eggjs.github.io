@@ -18,6 +18,8 @@ Node.js 进程间是无法共享对象的，因此每个进程都会有一个 `A
 
 在 [Controller]、[Service] 等可以通过 `this.app`，或者所有 [Context] 对象上的 `ctx.app`：
 
+TODO: 需要更准确的描述
+
 ```js
 // app/controller/home.js
 class HomeController extends Controller {
@@ -31,6 +33,8 @@ class HomeController extends Controller {
 ```
 
 几乎所有被框架 `Loader` 加载的文件，都可以 export 一个函数，并接收 `app` 作为参数：
+
+TODO: 什么是 Loader
 
 [Router]：
 
