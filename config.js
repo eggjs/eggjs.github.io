@@ -1,5 +1,6 @@
 module.exports = {
   clearScreen: false,
+  title: 'Egg',
   siteConfig: {
     title: 'Egg',
     host: '0.0.0.0',

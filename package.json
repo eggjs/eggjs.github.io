@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "doctools dev --configPath config.js",
     "build": "doctools build --configPath config.js",
-    "deploy": "doctools deploy --configPath config.js --githubToken=true"
+    "deploy": "doctools deploy --configPath config.js --githubToken=true --deployBranch=master"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,5 @@
   "homepage": "https://github.com/eggjs/eggjs.github.io#readme",
   "dependencies": {
     "@eggjs/doctools": "^1.0.7"
-  },
-  "devDependencies": {
-    "chokidar": "^3.0.2"
   }
 }
