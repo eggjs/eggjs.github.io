@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "doctools dev --configPath config.js",
     "build": "doctools build --configPath config.js",
-    "deploy": "doctools deploy --configPath config.js"
+    "deploy": "doctools deploy --configPath config.js --githubToken=true"
   },
   "repository": {
     "type": "git",
