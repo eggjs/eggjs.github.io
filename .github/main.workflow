@@ -16,9 +16,9 @@ action "Deployment" {
   secrets = ["GITHUB_TOKEN"]
 }
 
-# Filter for 1.0 branch
+# Filter for docs branch
 action "Filters for GitHub Actions" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   secrets = ["GITHUB_TOKEN"]
-  args = "branch 1.0"
+  args = "branch docs"
 }
