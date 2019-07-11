@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "dev": "doctools dev --configPath config.js",
+    "build": "doctools build --configPath config.js",
+    "deploy": "doctools deploy --configPath config.js --githubToken=true"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,9 @@
   },
   "homepage": "https://github.com/eggjs/eggjs.github.io#readme",
   "dependencies": {
-    "vuepress": "^1.0.0-alpha.47"
+    "@eggjs/doctools": "^1.0.7"
+  },
+  "devDependencies": {
+    "chokidar": "^3.0.2"
   }
 }
