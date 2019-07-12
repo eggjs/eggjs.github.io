@@ -43,7 +43,7 @@ const foot = {
         },
       ],
     },
-    { title: 'Egg.js Dingtalk', qrcode: '/egg/qrcode_dingtalk.png' },
+    { title: 'Egg.js Dingtalk', qrcode: '/img_egg/qrcode_dingtalk.png' },
   ],
   copyright: [{ text: 'Copyright © 2019 Egg.js' }],
 };
