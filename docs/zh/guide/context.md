@@ -342,10 +342,17 @@ it('should response json', () => {
 
 ### `ctx.set(name, value)`
 
-除了 `状态码` 和 `响应体` 外，还可以通过响应 `Header` 设置一些扩展信息。
+设置应答包的 `HTTP Header`
+
+关于`HTTP Header`本身，可以查看[MDN的HTTP headers文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)\
+每个`HTTP Header`通常说明应答的资源本体（HTTP body）的属性，或者控制浏览器对该资源的一些行为（如缓存等）
+
+> egg本身会自动添加必要的`header`（比如返回json时自动设置 `content-type`为 `application/json; charset=utf-8`，说明该资源为json类型和utf-8字符编码），另外public路径下的文件也会自动加入缓存时间（参考[egg-static](https://github.com/eggjs/egg-static)）
+
+如果需要便捷设置资源类型的header（`content-type`），可以查看下面的 `ctx.type` 文档
 
 - `ctx.set(key, value)`：可以设置一个 `Header`。
-- `ctx.set(headers)`：可以同时设置多个 `Header`。
+- `ctx.set(headers)`：可以同时设置多个 `Header`，多个header使用对象的方式组合，如`{'key1':'value1', 'key2':'value2'}`
 
 ```js
 // app/controller/proxy.js
@@ -361,15 +368,8 @@ class ProxyController extends Controller {
 };
 ```
 
-对应的测试：
 
-```js
-it('should send response header', () => {
-  return app.httpRequest()
-    .post('/api/post')
-    .expect('X-Response-Time', /\d+ms/);
-});
-```
+
 
 ### `ctx.type =`
 
