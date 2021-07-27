@@ -73,7 +73,8 @@ module.exports = () => {
       ctx.body = { error };
       ctx.status = status;
     }
-};
+  };
+}
 ```
 
 挂载中间件：
