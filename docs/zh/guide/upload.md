@@ -130,7 +130,7 @@ class UploadController extends Controller {
 
 ```js
 const path = require('path');
-const sendToWormhole = require('stream-wormhole');
+const { sendToWormhole } = require('stream-wormhole');
 const Controller = require('egg').Controller;
 
 class UploadController extends Controller {
@@ -162,7 +162,7 @@ class UploadController extends Controller {
 同时上传多个文件的场景，不能通过 `ctx.getFileStream()` 来获取，只能通过以下方式：
 
 ```js
-const sendToWormhole = require('stream-wormhole');
+const { sendToWormhole } = require('stream-wormhole');
 const Controller = require('egg').Controller;
 
 class UploadController extends Controller {
